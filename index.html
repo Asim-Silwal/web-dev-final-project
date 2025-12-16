@@ -1,25 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Netflix Clone</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <header class="header">
         <nav>
-            <img src="/img/logo.PNG" alt="Netflix Logo" class="logo">
-            <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">TV Shows</a></li>
-                <li><a href="#">Movies</a></li>
-                <li><a href="#">New & Popular</a></li>
-                <li><a href="#">My List</a></li>
-            </ul>
+            <div class="nav-left">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png"
+                    alt="Netflix Logo" class="logo">
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Shows</a></li>
+                    <li><a href="#">Movies</a></li>
+                    <li><a href="#">Games</a></li>
+                    <li><a href="#">Latest</a></li>
+                    <li><a href="#">My List</a></li>
+                    <li><a href="#">Browse by Languages</a></li>
+                </ul>
+            </div>
             <div class="nav-right">
-                <img src="img/search-icon.png" alt="Search" class="icon">
-                <img src="images/profile-icon.png" alt="Profile" class="icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    class="icon">
+                    <path
+                        d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z"
+                        stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M21 21L16.65 16.65" stroke="white" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+
+                <div class="notification-box">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        class="icon">
+                        <path d="M18 8A6 6 0 0 0 6 8C6 15 3 17 3 17H21C21 17 18 15 18 8Z" stroke="white"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M13.73 21A2 2 0 0 1 10.27 21" stroke="white" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                    <span class="badge">7</span>
+                </div>
+
+                <img src="https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=Leo" alt="avatar" class="avatar" />
             </div>
         </nav>
     </header>
@@ -29,97 +55,141 @@
             <source src="videos/intro-video.mp4" type="video/mp4">
         </video>
         <div class="hero-overlay">
-            <img src="img/hero.jpg" alt="Featured Title" class="hero-title">
-            <div class="hero-text">
-            <p class="netflix-series">N SERIES</p>
-            <h1 class="title">SQUID GAME</h1>
+            <div class="hero-content">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png"
+                    alt="Netflix Logo" class="logo">
+                <h1 class="hero-title-text">Squid Game</h1>
 
-            <div class="meta">
-                <span>2021</span> • <span>1 Season</span> • <span>TV Drama</span>
+                <p class="description">
+                    Power, ambition, revenge. After his brother's murder, a former
+                    gangster returns to the underworld — ready to settle every score,
+                    by any means necessary.
+                </p>
+
+                <div class="hero-buttons">
+                    <button class="play-btn" onclick="openVideoModal()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 3L19 12L5 21V3Z" fill="black" />
+                        </svg>
+                        Play
+                    </button>
+                    <button class="info-btn" onclick="openInfoModal()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" stroke="white" stroke-width="2" />
+                            <path d="M12 16V12" stroke="white" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M12 8H12.01" stroke="white" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        More Info
+                    </button>
+                </div>
             </div>
+        </div>
 
-            <p class="description">
-                Hundreds of cash-strapped players accept a strange invitation to compete in 
-                children's games. Inside, a tempting prize awaits — with deadly stakes.
-            </p>
+        <audio id="hero-music" loop>
+            <source src="music.mp3" type="audio/mpeg">
+        </audio>
 
-            <p class="starring">
-                Starring: Lee Jung-jae, Park Hae-soo, Wi Ha-jun  
-                Creator: Hwang Dong-hyuk
-            </p>
-            <div class="hero-buttons">
-                <button class="play-btn" onclick="openVideoModal()">Play</button>
-                <button class="info-btn" onclick="openInfoModal()">More Info</button>
+        <div class="hero-right-actions">
+            <button class="mute-btn" onclick="toggleMute()">
+                <svg id="mute-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11 5L6 9H2V15H6L11 19V5Z" stroke="white" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <line x1="23" y1="9" x2="17" y2="15" stroke="white" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <line x1="17" y1="9" x2="23" y2="15" stroke="white" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </button>
+            <div class="rating-badge">
+                <span class="rating-text">18+</span>
             </div>
         </div>
     </section>
-<section class="main-container" >
-      <div class="location" id="home">
-          <h1 id="home">Popular on Netflix</h1>
-          <div class="box">
-            <a href=""><img src="img/p1.PNG" alt=""></a>
-            <a href=""><img src="img/p2.PNG?raw=true" alt=""></a>
-            <a href=""><img src="img/p3.PNG?raw=true" alt=""></a>
-            <a href=""><img src="img/p4.PNG?raw=true" alt=""></a>
-            <a href=""><img src="img/p5.PNG?raw=true" alt=""></a>
-            <a href=""><img src="img/p6.PNG?raw=true" alt=""></a>
 
-            <a href=""><img src="img/p7.PNG?raw=true" alt=""></a>
-            <a href=""><img src="img/p8.PNG?raw=true" alt=""></a>
-            <a href=""><img src="img/p9.PNG?raw=true" alt=""></a>
-            <a href=""><img src="img/p10.PNG?raw=true" alt=""></a>
-            <a href=""><img src="img/p11.PNG?raw=true" alt=""></a>
-            <a href=""><img src="img/p12.PNG?raw=true" alt=""></a>
-          </div>
-      </div>
+    <section class="main-container">
 
-      <h1 id="myList">Trending Now</h1>
-      <div class="box">
-        <a href=""><img src="img/t1.PNG?raw=true" alt=""></a>
-        <a href=""><img src="img/t2.PNG?raw=true" alt=""></a>
-        <a href=""><img src="img/t3.PNG?raw=true" alt=""></a>
-        <a href=""><img src="img/t4.PNG?raw=true" alt=""></a>
-        <a href=""><img src="img/t5.PNG?raw=true" alt=""></a>
-        <a href=""><img src="img/t6.PNG?raw=true" alt=""></a>
-      </div>
+        <!-- Row 1 -->
+        <div class="row-container">
+            <h2 class="row-header">Because you watched Kadhalikka Neramillai</h2>
+            <div class="movie-row">
+                <div class="movie-card">
+                    <img src="img/p1.PNG" alt="Movie 1" class="movie-img">
+                    <div class="badge-recent">Recently Added</div>
+                </div>
+                <div class="movie-card">
+                    <img src="img/p2.PNG" alt="Movie 2" class="movie-img">
+                </div>
+                <div class="movie-card">
+                    <img src="img/p3.PNG" alt="Movie 3" class="movie-img">
+                    <div class="badge-recent">Recently Added</div>
+                </div>
+                <div class="movie-card">
+                    <img src="img/p4.PNG" alt="Movie 4" class="movie-img">
+                </div>
+                <div class="movie-card">
+                    <img src="img/p5.PNG" alt="Movie 5" class="movie-img">
+                    <div class="badge-recent">Recently Added</div>
+                </div>
+                <div class="movie-card">
+                    <img src="img/p6.PNG" alt="Movie 6" class="movie-img">
+                </div>
+                <div class="movie-card">
+                    <img src="img/p7.PNG" alt="Movie 7" class="movie-img">
+                </div>
+            </div>
+        </div>
 
-      <h1 id="tvShows">TV Shows</h1>
-      <div class="box">
-        <a href=""><img src="img/tv1.PNG?raw=true" alt=""></a>
-        <a href=""><img src="img/tv2.PNG?raw=true" alt=""></a>
-        <a href=""><img src="img/tv3.PNG?raw=true" alt=""></a>
-        <a href=""><img src="img/tv4.PNG?raw=true" alt=""></a>
-        <a href=""><img src="img/tv5.PNG?raw=true" alt=""></a>
-        <a href=""><img src="img/tv6.PNG?raw=true" alt=""></a>
+        <!-- Row 2 -->
+        <div class="row-container">
+            <h2 class="row-header">Because you watched War 2</h2>
+            <div class="movie-row">
+                <div class="movie-card">
+                    <img src="img/t1.PNG" alt="Trending 1" class="movie-img">
+                </div>
+                <div class="movie-card">
+                    <img src="img/t2.PNG" alt="Trending 2" class="movie-img">
+                    <div class="badge-recent">Recently Added</div>
+                </div>
+                <div class="movie-card">
+                    <img src="img/t3.PNG" alt="Trending 3" class="movie-img">
+                </div>
+                <div class="movie-card">
+                    <img src="img/t4.PNG" alt="Trending 4" class="movie-img">
+                    <div class="badge-recent">Recently Added</div>
+                </div>
+                <div class="movie-card">
+                    <img src="img/t5.PNG" alt="Trending 5" class="movie-img">
+                </div>
+                <div class="movie-card">
+                    <img src="img/t6.PNG" alt="Trending 6" class="movie-img">
+                </div>
+                <div class="movie-card">
+                    <img src="img/tv1.PNG" alt="TV 1" class="movie-img">
+                    <div class="badge-recent">Recently Added</div>
+                </div>
+            </div>
+        </div>
 
-        <a href=""><img src="img/tv7.PNG?raw=true" alt=""></a>
-        <a href=""><img src="img/tv8.PNG?raw=true" alt=""></a>
-        <a href=""><img src="img/tv9.PNG?raw=true" alt=""></a>
-        <a href=""><img src="img/tv10.PNG?raw=true" alt=""></a>
-        <a href=""><img src="img/tv11.PNG?raw=true" alt=""></a>
-        <a href=""><img src="img/tv12.PNG?raw=true" alt=""></a>
-      </div>
+        <!-- Row 3: Standard Category -->
+        <div class="row-container">
+            <h2 class="row-header">New Releases</h2>
+            <div class="movie-row">
+                <div class="movie-card"><img src="img/m1.PNG" class="movie-img"></div>
+                <div class="movie-card"><img src="img/m2.PNG" class="movie-img"></div>
+                <div class="movie-card"><img src="img/m3.PNG" class="movie-img">
+                    <div class="badge-recent">Recently Added</div>
+                </div>
+                <div class="movie-card"><img src="img/m4.PNG" class="movie-img"></div>
+                <div class="movie-card"><img src="img/m5.PNG" class="movie-img"></div>
+                <div class="movie-card"><img src="img/m6.PNG" class="movie-img"></div>
+            </div>
+        </div>
 
+    </section>
 
-      <h1 id="movies">Blockbuster Action & Adventure</h1>
-      <div class="box">
-        <a href=""><img src="img/m1.PNG?raw=true" alt=""></a>
-        <a href=""><img src="img/m2.PNG?raw=true" alt=""></a>
-        <a href=""><img src="img/m3.PNG?raw=true" alt=""></a>
-        <a href=""><img src="img/m4.PNG?raw=true" alt=""></a>
-        <a href=""><img src="img/m5.PNG?raw=true" alt=""></a>
-        <a href=""><img src="img/m6.PNG?raw=true" alt=""></a>
-      </div>
-
-      <h1 id="originals">Netflix Originals</h1>
-      <div class="box">
-        <a href=""><img src="img/o1.PNG?raw=true" alt=""></a>
-        <a href=""><img src="img/o2.PNG?raw=true" alt=""></a>
-        <a href=""><img src="img/o3.PNG?raw=true" alt=""></a>
-        <a href=""><img src="img/o4.PNG?raw=true" alt=""></a>
-        <a href=""><img src="img/o5.PNG?raw=true" alt=""></a>
-        <a href=""><img src="img/o6.PNG?raw=true" alt=""></a>                
-      </div>
     <footer class="footer">
         <div class="footer-content">
             <ul>
@@ -144,7 +214,6 @@
         <p>&copy; 2025 Netflix Clone</p>
     </footer>
 
-    <!-- Modals -->
     <div id="videoModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('videoModal')">&times;</span>
@@ -155,15 +224,11 @@
     </div>
 
     <div id="infoModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('infoModal')">&times;</span>
-            <h2>Mercy for None</h2>
-            <p>Power. Ambition. Revenge. After his brother's murder, a former gangster returns to the underworld – ready to settle every score, by any means necessary.</p>
-            <p>Genres: Action, Drama</p>
-            <p>Cast: Actor1, Actor2, Actor3</p>
-        </div>
+        <iframe src="info_modal.html" title="Info Modal"
+            style="width: 100%; height: 100%; border: none; background: transparent;"></iframe>
     </div>
 
     <script src="script.js"></script>
 </body>
+
 </html>

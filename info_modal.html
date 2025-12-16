@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info Modal</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        html,
+        body {
+            background: transparent;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: white;
+        }
+
+        .modal-container {
+            width: 850px;
+            max-width: 90%;
+            background-color: #181818;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 36px;
+            height: 36px;
+            background-color: #181818;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 30;
+        }
+
+        .close-btn:hover {
+            background-color: #333;
+        }
+
+        .banner {
+            position: relative;
+            height: 480px;
+            background-color: #000;
+        }
+
+        .banner-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .banner-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(to top, #181818, transparent);
+        }
+
+        .banner-content {
+            position: absolute;
+            bottom: 50px;
+            left: 50px;
+            width: 60%;
+        }
+
+        .show-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            line-height: 1;
+            text-transform: uppercase;
+        }
+
+        .banner-buttons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn-play {
+            background-color: white;
+            color: black;
+            border: none;
+            padding: 8px 24px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-play:hover {
+            background-color: rgba(255, 255, 255, 0.75);
+        }
+
+        .btn-circle {
+            background-color: rgba(42, 42, 42, 0.6);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: border-color 0.2s, background-color 0.2s;
+        }
+
+        .btn-circle:hover {
+            border-color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-circle svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        .info-body {
+            display: flex;
+            padding: 0 50px 40px 50px;
+            gap: 40px;
+        }
+
+        .left-col {
+            flex: 60%;
+        }
+
+        .right-col {
+            flex: 40%;
+            font-size: 0.9rem;
+        }
+
+        .meta-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .match-score {
+            color: #46d369;
+            font-weight: bold;
+        }
+
+        .year {
+            color: #ccc;
+        }
+
+        .rating-box {
+            border: 1px solid #808080;
+            padding: 0 4px;
+            font-size: 0.8em;
+        }
+
+        .hd-badge {
+            border: 1px solid #808080;
+            border-radius: 3px;
+            padding: 0 4px;
+            font-size: 0.7em;
+        }
+
+        .description {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .right-col div {
+            margin-bottom: 12px;
+            color: #777;
+        }
+
+        .right-col span {
+            color: #fff;
+        }
+
+        .right-col a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .right-col a:hover {
+            text-decoration: underline;
+        }
+
+        /* Episodes */
+        .episodes-section {
+            padding: 0 50px 40px 50px;
+        }
+
+        .episodes-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 15px;
+            padding-top: 20px;
+            border-top: 1px solid #404040;
+        }
+
+        .episodes-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .episode-row {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid #404040;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .episode-row:hover {
+            background-color: #333;
+        }
+
+        .ep-index {
+            font-size: 1.5rem;
+            color: #d2d2d2;
+            width: 30px;
+            flex-shrink: 0;
+        }
+
+        .ep-img {
+            width: 120px;
+            height: 68px;
+            background-color: #333;
+            border-radius: 4px;
+            object-fit: cover;
+            margin: 0 15px;
+            flex-shrink: 0;
+        }
+
+        .ep-info {
+            flex: 1;
+        }
+
+        .ep-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .ep-desc {
+            color: #d2d2d2;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        /* Responsive Settings */
+        @media (max-width: 768px) {
+            .modal-container {
+                width: 100%;
+                max-width: 100%;
+                height: 100%;
+                max-height: 100%;
+                border-radius: 0;
+            }
+
+            .banner {
+                height: 300px;
+            }
+
+            .banner-content {
+                left: 20px;
+                bottom: 20px;
+                width: 90%;
+            }
+
+            .show-title {
+                font-size: 2rem;
+            }
+
+            .info-body {
+                flex-direction: column;
+                padding: 0 20px 20px 20px;
+                gap: 20px;
+            }
+
+            .episodes-section {
+                padding: 0 20px 20px 20px;
+            }
+
+            .ep-img {
+                width: 100px;
+                height: 56px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="modal-container">
+
+        <div class="close-btn" onclick="closeMe()">
+            <svg viewBox="0 0 24 24" width="24" height="24">
+                <path
+                    d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                    fill="white"></path>
+            </svg>
+        </div>
+
+        <div class="banner">
+            <img src="img/hero.jpg" alt="Hero" class="banner-img">
+            <div class="banner-overlay"></div>
+
+            <div class="banner-content">
+                <div class="show-title">SQUID GAME</div>
+
+                <div class="banner-buttons">
+                    <button class="btn-play">
+                        <svg viewBox="0 0 24 24" width="28" height="28" fill="black">
+                            <path d="M8 5v14l11-7z"></path>
+                        </svg>
+                        Play
+                    </button>
+                    <div class="btn-circle">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
+                        </svg>
+                    </div>
+                    <div class="btn-circle">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-body">
+            <div class="left-col">
+                <div class="meta-row">
+                    <span class="activity-text" style="color:#46d369; font-weight:bold;">98% Match</span>
+                    <span class="year">2025</span>
+                    <span class="rating-box">18+</span>
+                    <span>Limited Series</span>
+                    <span class="hd-badge">HD</span>
+                    <span class="sound-badge"
+                        style="border:1px solid #808080; border-radius:3px; padding:0 3px; font-size:0.75em">Spatial
+                        Audio</span>
+                </div>
+                <div class="description">
+                    Power, ambition, revenge. After his brother's murder, a former gangster returns to the underworld —
+                    ready to settle every score, by any means necessary.
+                </div>
+            </div>
+            <div class="right-col">
+                <div><span>Cast:</span> <a href="#">So Ji-sub</a>, <a href="#">Huh Joon-ho</a>, <a href="#">Gong
+                        Myoung</a>, <a style="font-style:italic">more</a></div>
+                <div><span>Genres:</span> <a href="#">TV Dramas</a>, <a href="#">Korean</a>, <a href="#">TV Action &
+                        Adventure</a></div>
+                <div><span>This Show is:</span> <a href="#">Gritty</a>, <a href="#">Dark</a></div>
+            </div>
+        </div>
+
+        <div class="episodes-section">
+            <div class="episodes-header">
+                <span class="episodes-title">Episodes</span>
+                <span style="font-size:1rem; color:#ccc;">Limited Series</span>
+            </div>
+
+            <div class="episode-row">
+                <div class="ep-index">1</div>
+                <img src="img/tv1.PNG" alt="Ep 1" class="ep-img">
+                <div class="ep-info">
+                    <div class="ep-header">
+                        <span>Episode 1</span>
+                        <span>42m</span>
+                    </div>
+                    <div class="ep-desc">
+                        After Nam Gi-seok's mysterious death, Nam Gi-jun emerges from seclusion on a mission to find the
+                        perpetrator — no matter the cost.
+                    </div>
+                </div>
+            </div>
+
+            <div class="episode-row">
+                <div class="ep-index">2</div>
+                <img src="img/tv2.PNG" alt="Ep 2" class="ep-img">
+                <div class="ep-info">
+                    <div class="ep-header">
+                        <span>Episode 2</span>
+                        <span>45m</span>
+                    </div>
+                    <div class="ep-desc">
+                        Gi-jun tracks down the first lead, uncovering a web of betrayal that goes deeper than he
+                        imagined.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function closeMe() {
+            try {
+                window.parent.closeModal('infoModal');
+            } catch (e) {
+                console.log('Cannot close parent modal', e);
+                window.close();
+            }
+        }
+
+        window.onclick = function (event) {
+            if (event.target === document.body) {
+                closeMe();
+            }
+        }
+    </script>
+</body>
+
+</html>
