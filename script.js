@@ -1,5 +1,17 @@
 function openVideoModal() {
-    document.getElementById('videoModal').style.display = 'flex';
+    const modal = document.getElementById('videoModal');
+    modal.style.display = 'flex';
+
+    // Pause hero music if playing
+    const heroAudio = document.getElementById('hero-music');
+    if (heroAudio && !heroAudio.paused) {
+        toggleMute();
+    }
+
+    const video = modal.querySelector('video');
+    if (video) {
+        video.play().catch(error => console.log("Video play failed:", error));
+    }
 }
 
 function openInfoModal() {
@@ -7,7 +19,13 @@ function openInfoModal() {
 }
 
 function closeModal(modalId) {
-    document.getElementById(modalId).style.display = 'none';
+    const modal = document.getElementById(modalId);
+    modal.style.display = 'none';
+    const video = modal.querySelector('video');
+    if (video) {
+        video.pause();
+        video.currentTime = 0; // Reset video to start
+    }
 }
 
 // Close modal when clicking outside
