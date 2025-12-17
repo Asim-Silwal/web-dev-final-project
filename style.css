@@ -6,12 +6,10 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* Header & Navbar */
 .header {
     position: fixed;
     top: 0;
     width: 100%;
-    /* Gradient from black to transparent for readability */
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 10%, rgba(0, 0, 0, 0));
     z-index: 100;
     transition: background-color 0.4s;
@@ -22,9 +20,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 0 4%;
-    /* Match wide layout */
     height: 68px;
-    /* Standard Netflix navbar height */
 }
 
 .nav-left {
@@ -35,7 +31,6 @@ nav {
 
 .logo {
     width: 92.5px;
-    /* Precise Netflix logo width */
     height: auto;
     cursor: pointer;
     margin-right: 20px;
@@ -116,19 +111,16 @@ nav {
     object-fit: cover;
 }
 
-/* Vignette / Gradient Overlay */
 .hero-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* Gradient: Left shadow for text, Bottom shadow for content blending */
     background: linear-gradient(77deg, rgba(0, 0, 0, .6) 0, rgba(0, 0, 0, 0) 85%),
         linear-gradient(to top, #141414 0%, transparent 20%);
     display: flex;
     align-items: center;
-    /* Center vertically relative to container */
 }
 
 .hero-content {
@@ -209,7 +201,6 @@ nav {
     background-color: rgba(255, 255, 255, 0.75);
 }
 
-/* Info Button: Translucent gray */
 .info-btn {
     background-color: rgba(109, 109, 110, 0.7);
     color: white;
@@ -219,7 +210,6 @@ nav {
     background-color: rgba(109, 109, 110, 0.4);
 }
 
-/* Hero Right Actions (Mute + Rating) */
 .hero-right-actions {
     position: absolute;
     bottom: 35%;
@@ -253,11 +243,9 @@ nav {
     height: 20px;
 }
 
-/* Rating Badge */
 .rating-badge {
     background-color: rgba(51, 51, 51, 0.6);
     border-left: 3px solid #dcdcdc;
-    /* Little white strip on left */
     padding: 0.5rem 1rem 0.5rem 0.8rem;
     display: flex;
     align-items: center;
@@ -274,7 +262,6 @@ nav {
 }
 
 .content {
-    /* push down content if overlapping */
     position: relative;
     z-index: 10;
 }
@@ -362,10 +349,8 @@ nav {
     height: auto;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     .hero-overlay {
-        max-width: 90%;
         bottom: 10%;
     }
 
@@ -386,16 +371,13 @@ nav {
     }
 }
 
-/* Category Rows */
 .main-container {
     padding-left: 4%;
     padding-bottom: 50px;
     margin-top: -100px;
-    /* Pull over the hero video slightly */
     position: relative;
     z-index: 20;
     background: transparent;
-    /* Let gradients handle blending */
 }
 
 .row-container {
@@ -421,20 +403,16 @@ nav {
     overflow-x: auto;
     padding-right: 4%;
     padding-bottom: 20px;
-    /* Space for hover scale */
     scrollbar-width: none;
-    /* Firefox */
 }
 
 .movie-row::-webkit-scrollbar {
     display: none;
-    /* Chrome/Safari */
 }
 
 .movie-card {
     position: relative;
     flex: 0 0 16%;
-    /* Show roughly 6 items per row */
     aspect-ratio: 16/9;
     border-radius: 4px;
     overflow: hidden;
@@ -444,7 +422,6 @@ nav {
 
 .movie-card:hover {
     transform: scale(1.1);
-    /* Zoom effect */
     z-index: 10;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
@@ -455,7 +432,6 @@ nav {
     object-fit: cover;
 }
 
-/* Recently Added Badge */
 .badge-recent {
     position: absolute;
     bottom: 10px;
@@ -471,9 +447,6 @@ nav {
     white-space: nowrap;
 }
 
-/* Responsive Design */
-
-/* Tablet & Intermediate */
 @media (max-width: 900px) {
     .nav-links {
         gap: 10px;
@@ -493,17 +466,14 @@ nav {
     }
 }
 
-/* Mobile */
 @media (max-width: 600px) {
 
-    /* Navbar */
     .nav-links {
         display: none;
     }
 
     .nav {
         padding: 0 4%;
-        /* Ensure consistent with desktop */
     }
 
     .nav-left {
@@ -519,13 +489,11 @@ nav {
         gap: 15px;
     }
 
-    /* Hero */
     .hero-content {
         margin-left: 4%;
         width: 92%;
         position: absolute;
         bottom: 20%;
-        /* Move it up clearly above the fold/gradient */
         z-index: 10;
         margin-top: 0;
     }
@@ -541,7 +509,6 @@ nav {
 
     .hero-title-text {
         font-size: 2.2rem;
-        /* Even smaller to fit */
         line-height: 1.1;
         margin-bottom: 15px;
         margin-top: 5px;
@@ -556,7 +523,6 @@ nav {
         overflow: hidden;
         margin-bottom: 20px;
         text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
-        /* Better readability on mobile */
     }
 
     .hero-buttons {
@@ -565,17 +531,13 @@ nav {
 
     .hero-buttons button {
         flex: 1;
-        /* Stretch buttons on mobile for easy reach */
         justify-content: center;
         padding: 0.8rem;
     }
 
-    /* Rows */
     .main-container {
         padding-left: 4%;
-        /* Align with Navbar */
         margin-top: -20px;
-        /* Less overlap on mobile to avoid covering text */
         padding-bottom: 20px;
     }
 
@@ -585,7 +547,6 @@ nav {
 
     .movie-card {
         flex: 0 0 45%;
-        /* Slightly larger for better tap targets */
         margin-right: 5px;
     }
 
@@ -594,10 +555,8 @@ nav {
         margin-bottom: 5px;
     }
 
-    /* Video Modal Mobile Sizing */
     .modal-content {
         max-width: 95%;
-        /* Wider on mobile */
         padding: 10px;
     }
 

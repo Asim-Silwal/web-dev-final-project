@@ -2,7 +2,6 @@ function openVideoModal() {
     const modal = document.getElementById('videoModal');
     modal.style.display = 'flex';
 
-    // Pause hero music if playing
     const heroAudio = document.getElementById('hero-music');
     if (heroAudio && !heroAudio.paused) {
         toggleMute();
@@ -24,11 +23,10 @@ function closeModal(modalId) {
     const video = modal.querySelector('video');
     if (video) {
         video.pause();
-        video.currentTime = 0; // Reset video to start
+        video.currentTime = 0; 
     }
 }
 
-// Close modal when clicking outside
 window.onclick = function (event) {
     const videoModal = document.getElementById('videoModal');
     const infoModal = document.getElementById('infoModal');
@@ -46,7 +44,6 @@ function toggleMute() {
 
     if (audio.paused) {
         audio.play().then(() => {
-            // Change icon to Volume Up
             btnHtml.innerHTML = `
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M11 5L6 9H2V15H6L11 19V5Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -58,7 +55,6 @@ function toggleMute() {
         });
     } else {
         audio.pause();
-        // Change icon to Mute
         btnHtml.innerHTML = `
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M11 5L6 9H2V15H6L11 19V5Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
