@@ -68,7 +68,6 @@ nav {
     cursor: pointer;
 }
 
-/* Notification Badge Container */
 .notification-box {
     position: relative;
     cursor: pointer;
@@ -128,25 +127,6 @@ nav {
     z-index: 10;
 }
 
-.netflix-label {
-    color: #e50914;
-    font-weight: 800;
-    font-size: 1rem;
-    letter-spacing: 2px;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.netflix-label::before {
-    content: "N";
-    color: #e50914;
-    font-size: 2rem;
-    font-family: 'Bebas Neue', Impact, sans-serif;
-    margin-right: 5px;
-}
-
 .hero-title-text {
     font-size: 5rem;
     font-weight: 800;
@@ -178,14 +158,12 @@ nav {
     font-size: 1.2rem;
     font-weight: bold;
     padding: 0.8rem 1.5rem;
-    /* Larger padding */
     display: flex;
     align-items: center;
     gap: 10px;
     transition: background-color 0.2s;
 }
 
-/* Play Button: White bg, black text */
 .play-btn {
     background-color: white;
     color: black;
