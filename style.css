@@ -96,11 +96,9 @@ nav {
 }
 
 
-/* Hero Section */
 .hero {
     position: relative;
     height: 100vh;
-    /* Full viewport height */
     width: 100%;
     overflow: hidden;
 }
@@ -126,7 +124,6 @@ nav {
 .hero-content {
     margin-left: 4%;
     margin-top: 10%;
-    /* Push down slightly */
     max-width: 600px;
     z-index: 10;
 }
@@ -147,7 +144,6 @@ nav {
     color: #e50914;
     font-size: 2rem;
     font-family: 'Bebas Neue', Impact, sans-serif;
-    /* Try to mimic the N logo */
     margin-right: 5px;
 }
 
@@ -157,10 +153,8 @@ nav {
     line-height: 1.1;
     margin: 10px 0 20px 0;
     font-family: 'Impact', sans-serif;
-    /* Placeholder font styles */
     text-transform: uppercase;
     font-style: italic;
-    /* Mimic the style roughly */
 }
 
 .description {
